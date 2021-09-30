@@ -27,7 +27,13 @@ const useLocalStorage = () => {
     []
   )
 
-  return { setLocalStorage, getLocalStorage }
+  const removeLocalStorage = React.useCallback(({ key }: { key: string }) => {
+    if (window.localStorage) {
+      window.localStorage.removeItem(key)
+    }
+  }, [])
+
+  return { setLocalStorage, getLocalStorage, removeLocalStorage }
 }
 
 export default useLocalStorage
