@@ -5,6 +5,11 @@ const useCommonStyles = makeStyles((_theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  sideBySide: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 }))
 

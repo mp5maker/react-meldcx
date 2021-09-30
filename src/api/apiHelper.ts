@@ -22,8 +22,7 @@ const apiHelper = {
   },
   user: {
     login: ({ body }: { body: IUserPostBodyProps }) =>
-      axios.post('/login', body),
-    logout: () => axios.get('/logout')
+      axios.post('/login', body)
   },
   devicies: {
     getAll: () => axios.get('/devices')

@@ -9,5 +9,7 @@
   "INVALID_EMAIL": "Invalid Email",
   "DEVICES": "DEVICES",
   "DEVICE": "DEVICE",
-  "ONLINE": "ONLINE"
+  "ONLINE": "ONLINE",
+  "LOG_OUT": "Log out",
+  "NOTIFY": "Notify"
 }
