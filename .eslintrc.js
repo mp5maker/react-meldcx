@@ -30,6 +30,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-lonely-if': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

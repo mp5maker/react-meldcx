@@ -3,5 +3,6 @@
   "LOG_IN": "Log in",
   "SUBMIT": "Submit",
   "EMAIL_ADDRESS": "Email Address",
-  "PASSWORD": "Password"
+  "PASSWORD": "Password",
+  "THIS_PASSWORD_IS_INVALID": "This password is invalid"
 }

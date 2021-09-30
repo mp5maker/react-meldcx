@@ -30,23 +30,3 @@ npx create-react-app . --template=typescript
 
 npx husky install
 npx husky add .husky/pre-commit "npx --no-install lint-staged"
-
-### Timeline
-
-> Thu 30 Sep
-
-[10:00 AM - 10:15 AM]
-
-- Initiated the app
-- Updated the doc
-
-[11:00 AM - 11:07 AM]
-
-- Added husky, eslint, prettier
-
-[11:30 AM - 1:00 PM]
-
-- Setup the routes
-- Create Authentication Reducer
-- Setup Language
-- Setup Theme
