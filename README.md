@@ -20,15 +20,25 @@ npx create-react-app . --template=typescript
 - axios
 - react-router-dom
 
-### Dev Dependeciies
+### Code Format
 
 - husky
 - eslint
 - prettier
 
+### Enable Githooks
+
+npx husky install
+npx husky add .husky/pre-commit "npx --no-install lint-staged"
+
 ### Timeline
 
-> Thu 30 Sep [10:00 AM - 10: AM]
+> Thu 30 Sep [10:00 AM - 10: 15AM]
 
 - Initiated the app
 - Updated the doc
+
+
+> Thu 30 Sep [11:00 AM - 11:07 AM]
+
+- Added husky, eslint, prettier
