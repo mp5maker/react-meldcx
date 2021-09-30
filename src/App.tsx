@@ -5,6 +5,7 @@ import './App.scss'
 import routes from './constants/routes'
 import Login from './pages/login'
 import useAuthentication from './hooks/useAuthentication'
+import Body from './components/body'
 
 const history = createBrowserHistory()
 
@@ -16,11 +17,13 @@ const App = () => {
   React.useEffect(() => {}, [])
 
   return (
-    <Router history={history}>
-      <Switch>
-        <Route path={routes.login.path} component={Login} />
-      </Switch>
-    </Router>
+    <Body>
+      <Router history={history}>
+        <Switch>
+          <Route path={routes.login.path} component={Login} />
+        </Switch>
+      </Router>
+    </Body>
   )
 }
 
