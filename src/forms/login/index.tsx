@@ -21,10 +21,18 @@ const initialValues: any = {
 }
 
 const useStyles = makeStyles((theme: any) => ({
+  container: {
+    boxShadow: `0 1px 15px 0 ${theme.palette.primary.light}`,
+    borderRadius: theme.shape.borderRadius,
+    padding: theme.spacing(3)
+  },
   submitButton: {
     height: 50,
     padding: `${theme.spacing(3)}px ${theme.spacing(2)}px`,
     width: 150
+  },
+  startAdornment: {
+    marginRight: theme.spacing(2)
   }
 }))
 
@@ -46,10 +54,10 @@ const LoginForm: React.FC<ILoginFormProps> = ({ title }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ isSubmitting, values, errors }: any) => {
+      {({ isSubmitting, values, errors, handleChange }: any) => {
         console.log('isSubmitting', isSubmitting)
         return (
-          <Box>
+          <Box className={classes.container}>
             {title ? (
               <Box className={commonClasses.center} mb={theme.spacing(3)}>
                 <Typography variant="h2">{title}</Typography>
@@ -65,9 +73,13 @@ const LoginForm: React.FC<ILoginFormProps> = ({ title }) => {
                   error={errors.email}
                   id="login-page-username"
                   label={t('EMAIL_ADDRESS')}
+                  name="email"
+                  onChange={handleChange}
                   value={values.email}
                   InputProps={{
-                    startAdornment: <EmailIcon />
+                    startAdornment: (
+                      <EmailIcon className={classes.startAdornment} />
+                    )
                   }}
                 />
               </Box>
@@ -76,11 +88,15 @@ const LoginForm: React.FC<ILoginFormProps> = ({ title }) => {
                   required
                   fullWidth
                   type="password"
+                  name="password"
                   id="login-page-password"
                   label={t('PASSWORD')}
+                  onChange={handleChange}
                   value={values.password}
                   InputProps={{
-                    startAdornment: <LockIcon />
+                    startAdornment: (
+                      <LockIcon className={classes.startAdornment} />
+                    )
                   }}
                 />
               </Box>
