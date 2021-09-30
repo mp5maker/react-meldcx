@@ -4,5 +4,7 @@
   "SUBMIT": "Submit",
   "EMAIL_ADDRESS": "Email Address",
   "PASSWORD": "Password",
-  "THIS_PASSWORD_IS_INVALID": "This password is invalid"
+  "THIS_PASSWORD_IS_INVALID": "Invalid Password",
+  "REQUIRED": "Required",
+  "INVALID_EMAIL": "Invalid Email"
 }

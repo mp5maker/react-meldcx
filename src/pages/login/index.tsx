@@ -5,9 +5,12 @@ import get from 'lodash/get'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import apiHelper from '../../api/apiHelper'
+import settings from '../../constants/settings'
 import LoginForm from '../../forms/login'
 import useAlert from '../../hooks/useAlert'
+import useAuthentication from '../../hooks/useAuthentication'
 import useCommonStyles from '../../hooks/useCommonStyles'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 interface ILoginProps {}
 
@@ -27,11 +30,21 @@ const Login: React.FC<ILoginProps> = () => {
   const commonClasses = useCommonStyles()
   const { t } = useTranslation()
   const { setAlert } = useAlert()
+  const { setLocalStorage } = useLocalStorage()
+  const { logIn } = useAuthentication()
 
   const handleSubmit = ({ form, setSubmitting }: any) => {
     const onSuccess = (response: AxiosResponse) => {
-      console.log(response)
-      setSubmitting(false)
+      const data = get(response, 'data', '')
+      if (data) {
+        setLocalStorage({ key: settings.ACCESS_TOKEN, value: data })
+        logIn({
+          userInfo: {
+            [settings.ACCESS_TOKEN]: data
+          }
+        })
+        setSubmitting(false)
+      }
     }
 
     const onError = (error: AxiosError) => {
