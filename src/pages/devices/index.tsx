@@ -5,6 +5,7 @@ import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import Button from '../../components/button'
+import Circle from '../../components/circle'
 import useAuthentication from '../../hooks/useAuthentication'
 import useCommonStyles from '../../hooks/useCommonStyles'
 import useDevices from '../../hooks/useDevices'
@@ -15,7 +16,8 @@ const useStyles: any = makeStyles((theme: any) => ({
   container: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    position: 'relative'
   },
   content: {
     height: '100%'
@@ -28,6 +30,14 @@ const useStyles: any = makeStyles((theme: any) => ({
   button: {
     padding: `${theme.spacing(3)}px ${theme.spacing(2)}px`,
     width: 120
+  },
+  circleContainer: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    height: 500
   }
 }))
 
@@ -38,6 +48,7 @@ const Devices: React.FC<IDevicesProps> = () => {
   const { devices }: any = useDevices()
   const theme = useTheme()
   const { logOut } = useAuthentication()
+  const devicesLength = devices.length
 
   const handleLogout = () => logOut()
 
@@ -75,6 +86,21 @@ const Devices: React.FC<IDevicesProps> = () => {
             {t('LOG_OUT')}
           </Button>
         </Box>
+      </Box>
+      <Box className={`${classes.circleContainer}`}>
+        {devices.map((item: any, index: number) => {
+          const angle = 360 / devicesLength
+          const rotation = angle * index
+          const style = {
+            transform: `rotate(${rotation}deg) translate(250px) rotate(-${rotation}deg)`
+          }
+
+          return (
+            <React.Fragment key={`${index}`}>
+              <Circle item={item} style={style} />
+            </React.Fragment>
+          )
+        })}
       </Box>
     </Box>
   )

@@ -32,6 +32,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-lonely-if': 'off',
     'no-param-reassign': 'off',
+    'react/no-array-index-key': 'off',
+    'no-plusplus': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
