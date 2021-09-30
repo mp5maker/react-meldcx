@@ -33,12 +33,20 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 
 ### Timeline
 
-> Thu 30 Sep [10:00 AM - 10: 15AM]
+> Thu 30 Sep
+
+[10:00 AM - 10: 15AM]
 
 - Initiated the app
 - Updated the doc
 
-
-> Thu 30 Sep [11:00 AM - 11:07 AM]
+[11:00 AM - 11:07 AM]
 
 - Added husky, eslint, prettier
+
+[11:30 AM - 12:30 PM]
+
+- Setup the routes
+- Create Authentication Reducer
+- Setup Language
+- Setup Theme
