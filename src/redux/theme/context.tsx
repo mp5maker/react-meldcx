@@ -10,6 +10,7 @@ import reducer, { initialState } from './reducer'
 interface IThemeContextProps {
   state: any
   dispatch: (params: any) => any | void
+  theme: any
 }
 
 export const ThemeContext = React.createContext<Partial<IThemeContextProps>>({})
@@ -22,7 +23,7 @@ const ThemeProvider: React.FC<IThemeContextProviderProps> = ({ children }) => {
   const appliedTheme = createTheme(themes[theme])
 
   return (
-    <ThemeContext.Provider value={{ state, dispatch }}>
+    <ThemeContext.Provider value={{ state, dispatch, theme: appliedTheme }}>
       <MaterialThemeProvider theme={appliedTheme}>
         <>{children}</>
       </MaterialThemeProvider>

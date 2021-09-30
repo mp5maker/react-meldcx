@@ -44,7 +44,7 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 
 - Added husky, eslint, prettier
 
-[11:30 AM - 12:30 PM]
+[11:30 AM - 1:00 PM]
 
 - Setup the routes
 - Create Authentication Reducer

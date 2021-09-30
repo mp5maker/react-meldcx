@@ -1,4 +1,7 @@
 {
   "LOGIN": "Login",
-  "SUBMIT": "Submit"
+  "LOG_IN": "Log in",
+  "SUBMIT": "Submit",
+  "EMAIL_ADDRESS": "Email Address",
+  "PASSWORD": "Password"
 }
