@@ -35,7 +35,7 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 
 > Thu 30 Sep
 
-[10:00 AM - 10: 15AM]
+[10:00 AM - 10:15 AM]
 
 - Initiated the app
 - Updated the doc
