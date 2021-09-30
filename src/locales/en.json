@@ -6,5 +6,8 @@
   "PASSWORD": "Password",
   "THIS_PASSWORD_IS_INVALID": "Invalid Password",
   "REQUIRED": "Required",
-  "INVALID_EMAIL": "Invalid Email"
+  "INVALID_EMAIL": "Invalid Email",
+  "DEVICES": "DEVICES",
+  "DEVICE": "DEVICE",
+  "ONLINE": "ONLINE"
 }
