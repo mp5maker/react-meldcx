@@ -6,21 +6,34 @@ import routes from './constants/routes'
 import Login from './pages/login'
 import useAuthentication from './hooks/useAuthentication'
 import Body from './components/body'
+import Alert from './components/alert'
+import Devices from './pages/devices'
 
 const history = createBrowserHistory()
 
 const App = () => {
   const { isLoggedIn } = useAuthentication()
 
-  console.log(isLoggedIn)
-
   React.useEffect(() => {}, [])
 
   return (
     <Body>
+      <Alert />
       <Router history={history}>
         <Switch>
-          <Route path={routes.login.path} component={Login} />
+          <>
+            {isLoggedIn ? (
+              <>
+                <Route path={routes.devices.path} component={Devices} exact />
+                <Route path={routes.root.path} component={Devices} exact />
+              </>
+            ) : (
+              <>
+                <Route path={routes.login.path} component={Login} exact />
+                <Route path={routes.root.path} component={Login} exact />
+              </>
+            )}
+          </>
         </Switch>
       </Router>
     </Body>

@@ -58,19 +58,19 @@ const LoginForm: React.FC<ILoginFormProps> = ({ title, onSubmit }) => {
     validationSchema: schema,
     onSubmit: (form, { setSubmitting, setErrors }) => {
       const password = get(form, 'password', '')
-      if (password !== settings.COMMON_PASSWORD) {
-        setErrors({
-          ...errors,
-          ...(password !== settings.COMMON_PASSWORD
-            ? {
-                password: t('THIS_PASSWORD_IS_INVALID')
-              }
-            : {})
-        })
-        setSubmitting(false)
-      } else {
-        if (onSubmit) onSubmit({ form, setSubmitting, setErrors })
-      }
+      // if (password !== settings.COMMON_PASSWORD) {
+      //   setErrors({
+      //     ...errors,
+      //     ...(password !== settings.COMMON_PASSWORD
+      //       ? {
+      //           password: t('THIS_PASSWORD_IS_INVALID')
+      //         }
+      //       : {})
+      //   })
+      //   setSubmitting(false)
+      // } else {
+      if (onSubmit) onSubmit({ form, setSubmitting, setErrors })
+      // }
     }
   })
 

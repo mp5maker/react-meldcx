@@ -3,6 +3,7 @@ import MaterialAlert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
 import useAlert from '../../hooks/useAlert'
+import useCommonStyles from '../../hooks/useCommonStyles'
 
 interface IAlertProps {}
 
@@ -17,14 +18,19 @@ const useStyles = makeStyles((_theme: any) => ({
         }
       : {
           top: '-9999px'
-        })
-  })
+        }),
+    transition: 'all linear 0.25s'
+  }),
+  alert: {
+    borderRadius: 0
+  }
 }))
 
 const Alert: React.FC<IAlertProps> = () => {
   const timeout: any = React.useRef()
   const { severity, isVisible, text, setAlert }: any = useAlert()
   const classes = useStyles({ isVisible })
+  const commonClasses = useCommonStyles()
 
   React.useEffect(() => {
     if (timeout.current) clearTimeout(timeout.current)
@@ -41,8 +47,14 @@ const Alert: React.FC<IAlertProps> = () => {
   }, [isVisible])
 
   return (
-    <Box className={classes.container}>
-      <MaterialAlert severity={severity}>{text}</MaterialAlert>
+    <Box className={`${classes.container} alert-container`}>
+      <MaterialAlert
+        severity={severity}
+        variant="filled"
+        className={`${commonClasses.center}`}
+      >
+        {text}
+      </MaterialAlert>
     </Box>
   )
 }

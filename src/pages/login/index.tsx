@@ -38,9 +38,10 @@ const Login: React.FC<ILoginProps> = () => {
       const data = get(error, 'response.data', '')
       setAlert({
         severity: 'error',
-        isVisible: false,
+        isVisible: true,
         text: data
       })
+      setSubmitting(false)
     }
 
     apiHelper.user.login({ body: form }).then(onSuccess).catch(onError)
