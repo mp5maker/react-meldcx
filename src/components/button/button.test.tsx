@@ -9,6 +9,13 @@ describe('check Button Component', () => {
     const buttonTwo = screen.getByRole('button')
     expect(button).toBeDisabled()
     expect(buttonTwo).toHaveTextContent('Submit')
+    expect(button).toEqual(buttonTwo)
+    expect(button).toBeInTheDocument()
+  })
+  it('should not stay disabled', () => {
+    render(<Button>Submit</Button>)
+    const button = screen.getByText('Submit')
+    expect(button).not.toBeDisabled()
     expect(button).toBeInTheDocument()
   })
 })

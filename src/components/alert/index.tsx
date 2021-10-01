@@ -47,7 +47,7 @@ const Alert: React.FC<IAlertProps> = () => {
   }, [isVisible])
 
   return (
-    <Box className={`${classes.container} alert-container`}>
+    <Box className={`${classes.container} alert-container`} data-testid="alert">
       <MaterialAlert
         severity={severity}
         variant="filled"

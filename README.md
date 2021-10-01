@@ -30,3 +30,11 @@ npx create-react-app . --template=typescript
 
 npx husky install
 npx husky add .husky/pre-commit "npx --no-install lint-staged"
+
+
+### Considerations (Due to lack of time of my working schedules)
+
+* Some of the typescript types has been skipped
+* Kept the testing to the minimum
+* Some codes could be improved
+* SEO also has been ignored
