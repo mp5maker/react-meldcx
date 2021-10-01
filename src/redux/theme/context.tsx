@@ -1,16 +1,17 @@
 import {
   createTheme,
+  Theme,
   ThemeProvider as MaterialThemeProvider
 } from '@mui/material'
 import get from 'lodash/get'
 import * as React from 'react'
 import themes from '../../constants/themes'
-import reducer, { initialState } from './reducer'
+import reducer, { initialState, TInitialStateProps } from './reducer'
 
 interface IThemeContextProps {
-  state: any
+  state: TInitialStateProps
   dispatch: (params: any) => any | void
-  theme: any
+  theme: Theme
 }
 
 export const ThemeContext = React.createContext<Partial<IThemeContextProps>>({})

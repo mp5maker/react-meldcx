@@ -1,4 +1,4 @@
-import defaultAxios from 'axios'
+import defaultAxios, { AxiosRequestConfig } from 'axios'
 import settings from '../constants/settings'
 
 const axios = defaultAxios.create({
@@ -6,7 +6,7 @@ const axios = defaultAxios.create({
   timeout: 30000
 })
 
-const onSuccessRequest = (config: any) => {
+const onSuccessRequest = (config: AxiosRequestConfig) => {
   const accessToken = localStorage.getItem(settings.ACCESS_TOKEN)
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -14,7 +14,7 @@ const onSuccessRequest = (config: any) => {
   return config
 }
 
-const onErrorRequest = (error: any) => Promise.reject(error)
+const onErrorRequest = (error: AxiosRequestConfig) => Promise.reject(error)
 axios.interceptors.request.use(onSuccessRequest, onErrorRequest)
 
 export default axios

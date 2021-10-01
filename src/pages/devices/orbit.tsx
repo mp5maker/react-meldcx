@@ -1,10 +1,10 @@
-import { useMediaQuery } from '@mui/material'
+import { Theme, useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import Circle from '../../components/circle'
 
-const useStyles: any = makeStyles((_theme: any) => ({
+const useStyles = makeStyles(() => ({
   circleContainer: {
     position: 'fixed',
     width: '100%',
@@ -13,7 +13,7 @@ const useStyles: any = makeStyles((_theme: any) => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  circleContent: ({ isWidthLessThan767 }: any) => ({
+  circleContent: ({ isWidthLessThan767 }: { isWidthLessThan767: boolean }) => ({
     position: 'relative',
     width: isWidthLessThan767 ? 250 : 500,
     height: isWidthLessThan767 ? 250 : 500,
@@ -46,7 +46,7 @@ const Orbit = <T,>({ list }: IOrbitProps<T>) => {
 
     return (
       <Box className={`${classes.circleContent} circleContent`}>
-        {list.map((item: any, index: number) => {
+        {list.map((item: T, index: number) => {
           if (index !== 0) rotation += angle
           const style = {
             transform: `rotate(${rotation}deg) translate(${

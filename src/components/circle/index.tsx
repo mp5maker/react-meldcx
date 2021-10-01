@@ -1,15 +1,16 @@
-import { makeStyles } from '@mui/styles'
-import * as React from 'react'
+import { Theme } from '@mui/material'
 import Box from '@mui/material/Box'
+import { CSSProperties, makeStyles } from '@mui/styles'
+import * as React from 'react'
 
-interface ICircleProps {
-  item?: any
-  style?: any
-  radius?: any
+interface ICircleProps<T> {
+  item?: T
+  style?: CSSProperties
+  radius?: number
 }
 
-const useStyles = makeStyles((theme: any) => ({
-  container: ({ radius }: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
+  container: ({ radius }: { radius: number }) => ({
     display: 'block',
     ...(radius
       ? {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme: any) => ({
   })
 }))
 
-const Circle: React.FC<ICircleProps> = ({ item, radius, ...props }) => {
+const Circle = <T,>({ item, radius = 80, ...props }: ICircleProps<T>) => {
   const classes = useStyles({ radius })
   console.debug(item)
 

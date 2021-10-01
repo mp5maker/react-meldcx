@@ -5,9 +5,9 @@ import apiHelper from '../api/apiHelper'
 import settings from '../constants/settings'
 
 const useDevices = () => {
-  const timeout: any = React.useRef()
+  const timeout = React.useRef<ReturnType<typeof setTimeout>>()
   const [devices, setDevices] = React.useState<Array<any>>([])
-  const isMounted: any = React.useRef()
+  const isMounted = React.useRef<boolean>()
 
   React.useEffect(() => {
     const recursion = () => {

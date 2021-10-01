@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material'
+import { Theme, useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { makeStyles } from '@mui/styles'
@@ -17,7 +17,7 @@ import Orbit from './orbit'
 
 interface IDevicesProps {}
 
-const useStyles: any = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   container: {
     height: '100%',
     display: 'flex',
@@ -88,7 +88,7 @@ const Devices: React.FC<IDevicesProps> = () => {
   return (
     <Box className={classes.container}>
       <Box className={`${classes.content} ${commonClasses.center} `}>
-        <Box className={classes.box}>
+        <Box>
           <Box>
             <Typography variant="h4">
               {devices.length} {devices.length > 1 ? t('DEVICES') : t('DEVICE')}

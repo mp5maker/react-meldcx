@@ -1,6 +1,12 @@
 import get from 'lodash/get'
 
-export const initialState: any = {
+export interface TInitialStateProps {
+  isVisible: boolean
+  severity: string
+  text: string
+}
+
+export const initialState: TInitialStateProps = {
   isVisible: false,
   severity: 'error',
   text: ''
@@ -14,7 +20,7 @@ const reducer = (
   state = initialState,
   action: { [x: string]: any; type: string }
 ) => {
-  const type: any = get(action, 'type', '')
+  const type: string = get(action, 'type', '')
   const value: any = get(action, 'value', {})
 
   switch (type) {

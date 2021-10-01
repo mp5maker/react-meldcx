@@ -1,8 +1,8 @@
 import * as React from 'react'
-import reducer, { initialState } from './reducer'
+import reducer, { initialState, TInitialStateProps } from './reducer'
 
 interface IAlertContextProps {
-  state: any
+  state: TInitialStateProps
   dispatch: (params: any) => any | void
 }
 

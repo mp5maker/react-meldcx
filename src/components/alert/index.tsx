@@ -7,7 +7,7 @@ import useCommonStyles from '../../hooks/useCommonStyles'
 
 interface IAlertProps {}
 
-const useStyles = makeStyles((_theme: any) => ({
+const useStyles = makeStyles(() => ({
   container: ({ isVisible }: any) => ({
     position: 'absolute',
     width: '100%',
@@ -27,7 +27,7 @@ const useStyles = makeStyles((_theme: any) => ({
 }))
 
 const Alert: React.FC<IAlertProps> = () => {
-  const timeout: any = React.useRef()
+  const timeout = React.useRef<ReturnType<typeof setTimeout>>()
   const { severity, isVisible, text, setAlert }: any = useAlert()
   const classes = useStyles({ isVisible })
   const commonClasses = useCommonStyles()

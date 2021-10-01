@@ -1,3 +1,4 @@
+import { Theme } from '@mui/material'
 import Box from '@mui/material/Box'
 import { makeStyles } from '@mui/styles'
 import { AxiosError, AxiosResponse } from 'axios'
@@ -16,7 +17,7 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 
 interface ILoginProps {}
 
-const useStyles: any = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   container: {
     height: '100%',
     position: 'relative'

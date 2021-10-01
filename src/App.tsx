@@ -1,9 +1,10 @@
 import { DarkMode, LightMode } from '@mui/icons-material'
 import TranslateIcon from '@mui/icons-material/Translate'
-import { useTheme } from '@mui/material'
+import { useTheme, Theme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import { BaseCSSProperties } from '@mui/material/styles/createMixins'
 import { makeStyles } from '@mui/styles'
 import { createBrowserHistory } from 'history'
 import get from 'lodash/get'
@@ -23,7 +24,7 @@ import Login from './pages/login'
 
 const browserHistory = createBrowserHistory()
 
-const useStyles: any = makeStyles((_theme: any) => ({
+const useStyles = makeStyles(() => ({
   topContent: {
     position: 'absolute',
     top: 24,
@@ -33,7 +34,7 @@ const useStyles: any = makeStyles((_theme: any) => ({
 
 const App = () => {
   const { t, i18n } = useTranslation()
-  const classes = useStyles()
+  const classes: ReturnType<typeof useStyles> = useStyles()
   const theme = useTheme()
   const { state, setTheme }: any = useLocalTheme()
   const currentTheme = get(state, 'theme', '')
@@ -79,7 +80,6 @@ const App = () => {
       ) : (
         <>
           <Button
-            className={classes.button}
             variant={currentTheme === 'light' ? 'contained' : 'outlined'}
             style={{ margin: theme.spacing(1) }}
             onClick={() => handleTheme('light')}
@@ -87,7 +87,6 @@ const App = () => {
             <LightMode />
           </Button>
           <Button
-            className={classes.button}
             variant={currentTheme === 'dark' ? 'contained' : 'outlined'}
             style={{ margin: theme.spacing(1) }}
             onClick={() => handleTheme('dark')}

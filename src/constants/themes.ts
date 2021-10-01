@@ -1,4 +1,6 @@
-const light: any = {
+import { Theme } from '@mui/material'
+
+const light: Theme & any = {
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     values: {
@@ -584,7 +586,7 @@ const light: any = {
   }
 }
 
-const dark: any = {
+const dark: Theme & any = {
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     values: {

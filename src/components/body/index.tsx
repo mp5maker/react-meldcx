@@ -4,7 +4,7 @@ import * as React from 'react'
 
 interface IBodyPropsInterface {}
 
-const useStyles: any = makeStyles((_theme: any) => ({
+const useStyles = makeStyles(() => ({
   root: {
     height: '100%'
   }
