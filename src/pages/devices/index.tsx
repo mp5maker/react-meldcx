@@ -32,12 +32,29 @@ const useStyles: any = makeStyles((theme: any) => ({
     width: 120
   },
   circleContainer: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: 'fixed',
+    width: '100%',
+    height: '90%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  circleContent: {
+    position: 'relative',
     width: 500,
-    height: 500
+    height: 500,
+    padding: 0,
+    transition: 'all linear 0.25s',
+    '& *': {
+      display: 'block',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: 80,
+      height: 80,
+      margin: -40,
+      transition: 'all ease-in-out 0.25s'
+    }
   }
 }))
 
@@ -53,6 +70,28 @@ const Devices: React.FC<IDevicesProps> = () => {
   const handleLogout = () => logOut()
 
   const handleNotify = () => {}
+
+  const CirclesContent = React.useMemo(() => {
+    let rotation = 0
+    const angle = 360 / devicesLength
+
+    return (
+      <Box className={classes.circleContent}>
+        {devices.map((item: any, index: number) => {
+          if (index !== 0) rotation += angle
+          const style = {
+            transform: `rotate(${rotation}deg) translate(250px) rotate(-${rotation}deg)`
+          }
+
+          return (
+            <React.Fragment key={`${index}`}>
+              <Circle item={item} style={style} />
+            </React.Fragment>
+          )
+        })}
+      </Box>
+    )
+  }, [devicesLength])
 
   return (
     <Box className={classes.container}>
@@ -87,21 +126,7 @@ const Devices: React.FC<IDevicesProps> = () => {
           </Button>
         </Box>
       </Box>
-      <Box className={`${classes.circleContainer}`}>
-        {devices.map((item: any, index: number) => {
-          const angle = 360 / devicesLength
-          const rotation = angle * index
-          const style = {
-            transform: `rotate(${rotation}deg) translate(250px) rotate(-${rotation}deg)`
-          }
-
-          return (
-            <React.Fragment key={`${index}`}>
-              <Circle item={item} style={style} />
-            </React.Fragment>
-          )
-        })}
-      </Box>
+      <Box className={`${classes.circleContainer}`}>{CirclesContent}</Box>
     </Box>
   )
 }

@@ -3,7 +3,7 @@ html, body {
   padding: 0;
   height: 100%;
   position: 'relative';
-  & > div {
+  & > div#root {
     height: 100%;
   }
 }
