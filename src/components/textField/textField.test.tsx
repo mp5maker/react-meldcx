@@ -1,6 +1,6 @@
-import { screen, render } from '@testing-library/react'
-import TextField from '.'
 import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react'
+import TextField from '.'
 
 describe('check TextField component', () => {
   it('should render text field properly', () => {
@@ -16,7 +16,9 @@ describe('check TextField component', () => {
     )
     const inputFieldLabel = screen.getByText('Email')
     const inputField = screen.getByPlaceholderText('Email')
+    // @ts-ignore
     expect(inputField.name).toBe('email')
+    expect(inputField).toHaveValue('sample')
     expect(inputFieldLabel).toBeInTheDocument()
     expect(inputField).toBeInTheDocument()
   })

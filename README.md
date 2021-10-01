@@ -35,6 +35,7 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 ### Considerations (Due to lack of time of my working schedules)
 
 * Some of the typescript types has been skipped
-* Kept the testing to the minimum
+* Kept the testing to the minimum / Skipped several async and integration tests
 * Some codes could be improved
 * SEO also has been ignored
+* Spent more than 4 hours
