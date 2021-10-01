@@ -18,7 +18,8 @@ interface ILoginProps {}
 
 const useStyles: any = makeStyles((theme: any) => ({
   container: {
-    height: '100%'
+    height: '100%',
+    position: 'relative'
   },
   content: {
     width: 400,

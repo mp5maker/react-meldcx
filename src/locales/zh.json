@@ -1,0 +1,15 @@
+{
+  "LOGIN": "登录",
+  "LOG_IN": "登录",
+  "SUBMIT": "提交",
+  "EMAIL_ADDRESS": "Email 电子邮件地址",
+  "PASSWORD": "密码",
+  "THIS_PASSWORD_IS_INVALID": "密码无效",
+  "REQUIRED": "必需",
+  "INVALID_EMAIL": "电子邮件无效",
+  "DEVICES": "设备",
+  "DEVICE": "设备",
+  "ONLINE": "在线",
+  "LOG_OUT": "登出",
+  "NOTIFY": "通知"
+}

@@ -7,8 +7,8 @@
   "THIS_PASSWORD_IS_INVALID": "Invalid Password",
   "REQUIRED": "Required",
   "INVALID_EMAIL": "Invalid Email",
-  "DEVICES": "DEVICES",
-  "DEVICE": "DEVICE",
+  "DEVICES": "Devices",
+  "DEVICE": "Device",
   "ONLINE": "ONLINE",
   "LOG_OUT": "Log out",
   "NOTIFY": "Notify"
