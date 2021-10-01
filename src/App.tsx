@@ -100,7 +100,7 @@ const App = () => {
   )
 
   return (
-    <Body data-testid="app">
+    <Body>
       <Alert />
       <Router history={browserHistory}>
         <Switch>

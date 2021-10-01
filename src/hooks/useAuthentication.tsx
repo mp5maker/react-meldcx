@@ -1,3 +1,4 @@
+import delay from 'lodash/delay'
 import get from 'lodash/get'
 import * as React from 'react'
 import { useHistory } from 'react-router'
@@ -33,7 +34,9 @@ const useAuthentication = () => {
       }
     })
     removeLocalStorage({ key: settings.ACCESS_TOKEN })
-    history.push(routes.login.path)
+    delay(() => {
+      history.push(routes.login.path)
+    }, 250)
   }, [])
 
   return { state, dispatch, isLoggedIn, userInfo, logIn, logOut }

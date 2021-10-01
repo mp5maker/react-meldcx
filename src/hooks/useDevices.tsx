@@ -7,7 +7,7 @@ import settings from '../constants/settings'
 const useDevices = () => {
   const timeout: any = React.useRef()
   const [devices, setDevices] = React.useState<Array<any>>([])
-  const [firstCall, setFirstCall] = React.useState<boolean>(true)
+  const isMounted: any = React.useRef()
 
   React.useEffect(() => {
     const recursion = () => {
@@ -15,8 +15,7 @@ const useDevices = () => {
 
       const callApi = () => {
         const onSuccess = (response: AxiosResponse) => {
-          setDevices(get(response, 'data.devices', {}))
-          setFirstCall(false)
+          if (isMounted) setDevices(get(response, 'data.devices', {}))
           recursion()
         }
 
@@ -34,8 +33,7 @@ const useDevices = () => {
     }
 
     const onSuccess = (response: AxiosResponse) => {
-      setDevices(get(response, 'data.devices', {}))
-      setFirstCall(false)
+      if (isMounted) setDevices(get(response, 'data.devices', {}))
       recursion()
     }
 
@@ -48,6 +46,13 @@ const useDevices = () => {
 
     return () => {
       if (timeout.current) clearTimeout(timeout.current)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    isMounted.current = true
+    return () => {
+      isMounted.current = false
     }
   }, [])
 
