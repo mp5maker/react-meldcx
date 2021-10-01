@@ -11,5 +11,7 @@
   "DEVICE": "设备",
   "ONLINE": "在线",
   "LOG_OUT": "登出",
-  "NOTIFY": "通知"
+  "NOTIFY": "通知",
+  "ENGLISH": "English",
+  "MANDARIN": "中文"
 }

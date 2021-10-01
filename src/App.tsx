@@ -1,5 +1,9 @@
 import { DarkMode, LightMode } from '@mui/icons-material'
-import { Box, useTheme } from '@mui/material'
+import TranslateIcon from '@mui/icons-material/Translate'
+import { useTheme } from '@mui/material'
+import Box from '@mui/material/Box'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import { makeStyles } from '@mui/styles'
 import { createBrowserHistory } from 'history'
 import get from 'lodash/get'
@@ -18,7 +22,7 @@ import Login from './pages/login'
 
 const browserHistory = createBrowserHistory()
 
-const useStyles: any = makeStyles((theme: any) => ({
+const useStyles: any = makeStyles((_theme: any) => ({
   topContent: {
     position: 'absolute',
     top: 24,
@@ -32,37 +36,45 @@ const App = () => {
   const theme = useTheme()
   const { state, setTheme }: any = useLocalTheme()
   const currentTheme = get(state, 'theme', '')
+  const [showlanguage, setShowLanguage] = React.useState<any>(null)
+
+  const openLanguage = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (showlanguage) {
+      setShowLanguage(null)
+    } else setShowLanguage(event.currentTarget)
+  }
+  const closeLanguage = (language: string) => {
+    if (['en', 'zh'].includes(language)) i18n.changeLanguage(language)
+    setShowLanguage(null)
+  }
 
   const handleTheme = (value: string) => {
     setTheme(value)
   }
 
-  const handleLanguage = (lang: string) => {
-    i18n.changeLanguage(lang)
-  }
-
   const TopContent = (
     <Box className={classes.topContent}>
       <Button
-        className={classes.button}
-        variant={i18n.language === 'en' ? 'contained' : 'outlined'}
-        style={{ marginRight: theme.spacing(2) }}
-        onClick={() => handleLanguage('en')}
+        aria-controls="language-menu"
+        aria-haspopup="true"
+        onClick={openLanguage}
       >
-        {t('ENGLISH')}
+        <TranslateIcon />
       </Button>
-      <Button
-        className={classes.button}
-        variant={i18n.language === 'zh' ? 'contained' : 'outlined'}
-        style={{ marginRight: theme.spacing(2) }}
-        onClick={() => handleLanguage('zh')}
+      <Menu
+        id="language-menu"
+        anchorEl={showlanguage}
+        keepMounted
+        open={Boolean(showlanguage)}
+        onClose={closeLanguage}
       >
-        {t('MANDARIN')}
-      </Button>
+        <MenuItem onClick={() => closeLanguage('en')}>{t('ENGLISH')}</MenuItem>
+        <MenuItem onClick={() => closeLanguage('zh')}>{t('MANDARIN')}</MenuItem>
+      </Menu>
       <Button
         className={classes.button}
         variant={currentTheme === 'light' ? 'contained' : 'outlined'}
-        style={{ marginRight: theme.spacing(2) }}
+        style={{ margin: theme.spacing(1) }}
         onClick={() => handleTheme('light')}
       >
         <LightMode />
@@ -70,7 +82,7 @@ const App = () => {
       <Button
         className={classes.button}
         variant={currentTheme === 'dark' ? 'contained' : 'outlined'}
-        style={{ marginRight: theme.spacing(2) }}
+        style={{ margin: theme.spacing(1) }}
         onClick={() => handleTheme('dark')}
       >
         <DarkMode />

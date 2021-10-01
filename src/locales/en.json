@@ -11,5 +11,7 @@
   "DEVICE": "Device",
   "ONLINE": "ONLINE",
   "LOG_OUT": "Log out",
-  "NOTIFY": "Notify"
+  "NOTIFY": "Notify",
+  "ENGLISH": "English",
+  "MANDARIN": "中文"
 }
