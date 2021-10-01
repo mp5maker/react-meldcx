@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     width: isWidthLessThan767 ? 250 : 500,
     height: isWidthLessThan767 ? 250 : 500,
     padding: 0,
-    '& *': {
+    '& div': {
       display: 'block',
       position: 'absolute',
       top: '50%',

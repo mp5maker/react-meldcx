@@ -4,7 +4,8 @@ import '@testing-library/jest-dom'
 
 jest.mock('@mui/styles', () => ({
   makeStyles: () => () => ({
-    container: {}
+    container: {},
+    content: {}
   })
 }))
 
