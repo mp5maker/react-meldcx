@@ -1,3 +1,4 @@
+import defaultAxios from 'axios'
 import axios from './axios'
 
 interface IUserPostBodyProps {
@@ -26,6 +27,9 @@ const apiHelper = {
   notify: {
     post: ({ body }: { body: INotifyPostBodyProps }) =>
       axios.post('/notify', body)
+  },
+  chuckNorris: {
+    get: () => defaultAxios.get('https://api.chucknorris.io/jokes/random')
   }
 }
 

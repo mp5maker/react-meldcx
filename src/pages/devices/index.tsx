@@ -2,6 +2,8 @@ import { useTheme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { makeStyles } from '@mui/styles'
+import { AxiosResponse } from 'axios'
+import get from 'lodash/get'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import apiHelper from '../../api/apiHelper'
@@ -48,22 +50,39 @@ const Devices: React.FC<IDevicesProps> = () => {
   const handleLogout = () => logOut()
 
   const handleNotify = () => {
-    apiHelper.notify
-      .post({
-        body: {
-          name: settings.USER_NAME,
-          email: settings.USER_EMAIL,
-          repoUrl: settings.REPO_URL,
-          message: 'yo'
-        }
-      })
-      .then(() => {
-        setAlert({
-          severity: 'success',
-          isVisible: true,
-          text: t('SUCCESSFULLY_NOTIFIED')
+    // @ts-ignore
+    const notify = ({ message }: { message: string }) => {
+      apiHelper.notify
+        .post({
+          body: {
+            name: settings.USER_NAME,
+            email: settings.USER_EMAIL,
+            repoUrl: settings.REPO_URL,
+            message
+          }
         })
-      })
+        .then(() => {
+          setAlert({
+            severity: 'success',
+            isVisible: true,
+            text: t('SUCCESSFULLY_NOTIFIED')
+          })
+        })
+    }
+
+    const onSuccessChuckNorris = (response: AxiosResponse) => {
+      const message = get(response, 'data.value', '')
+      notify({ message })
+    }
+
+    const onErrorChuckNorris = () => {
+      notify({ message: 'Chuck Norris Failed Me ' })
+    }
+
+    apiHelper.chuckNorris
+      .get()
+      .then(onSuccessChuckNorris)
+      .catch(onErrorChuckNorris)
   }
 
   return (
@@ -72,7 +91,7 @@ const Devices: React.FC<IDevicesProps> = () => {
         <Box className={classes.box}>
           <Box>
             <Typography variant="h4">
-              {devices.length} {t('DEVICES')}
+              {devices.length} {devices.length > 1 ? t('DEVICES') : t('DEVICE')}
             </Typography>
           </Box>
           <Box className={commonClasses.center}>

@@ -55,8 +55,6 @@ const App = () => {
     setTheme(value)
   }
 
-  console.log(isLoggedIn)
-
   const TopContent = (
     <Box className={classes.topContent}>
       <Button
