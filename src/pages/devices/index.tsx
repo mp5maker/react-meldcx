@@ -5,10 +5,10 @@ import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import Button from '../../components/button'
-import Circle from '../../components/circle'
 import useAuthentication from '../../hooks/useAuthentication'
 import useCommonStyles from '../../hooks/useCommonStyles'
 import useDevices from '../../hooks/useDevices'
+import Orbit from './orbit'
 
 interface IDevicesProps {}
 
@@ -30,31 +30,6 @@ const useStyles: any = makeStyles((theme: any) => ({
   button: {
     padding: `${theme.spacing(3)}px ${theme.spacing(2)}px`,
     width: 120
-  },
-  circleContainer: {
-    position: 'fixed',
-    width: '100%',
-    height: '90%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  circleContent: {
-    position: 'relative',
-    width: 500,
-    height: 500,
-    padding: 0,
-    transition: 'all linear 0.25s',
-    '& *': {
-      display: 'block',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: 80,
-      height: 80,
-      margin: -40,
-      transition: 'all ease-in-out 0.25s'
-    }
   }
 }))
 
@@ -65,33 +40,10 @@ const Devices: React.FC<IDevicesProps> = () => {
   const { devices }: any = useDevices()
   const theme = useTheme()
   const { logOut } = useAuthentication()
-  const devicesLength = devices.length
 
   const handleLogout = () => logOut()
 
   const handleNotify = () => {}
-
-  const CirclesContent = React.useMemo(() => {
-    let rotation = 0
-    const angle = 360 / devicesLength
-
-    return (
-      <Box className={classes.circleContent}>
-        {devices.map((item: any, index: number) => {
-          if (index !== 0) rotation += angle
-          const style = {
-            transform: `rotate(${rotation}deg) translate(250px) rotate(-${rotation}deg)`
-          }
-
-          return (
-            <React.Fragment key={`${index}`}>
-              <Circle item={item} style={style} />
-            </React.Fragment>
-          )
-        })}
-      </Box>
-    )
-  }, [devicesLength])
 
   return (
     <Box className={classes.container}>
@@ -126,7 +78,7 @@ const Devices: React.FC<IDevicesProps> = () => {
           </Button>
         </Box>
       </Box>
-      <Box className={`${classes.circleContainer}`}>{CirclesContent}</Box>
+      <Orbit list={devices} />
     </Box>
   )
 }

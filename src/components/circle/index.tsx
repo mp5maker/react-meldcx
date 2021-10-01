@@ -1,4 +1,3 @@
-import { useMediaQuery } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import Box from '@mui/material/Box'
@@ -6,15 +5,16 @@ import Box from '@mui/material/Box'
 interface ICircleProps {
   item?: any
   style?: any
+  radius?: any
 }
 
 const useStyles = makeStyles((theme: any) => ({
-  container: ({ isWidthLessThan767 }: any) => ({
+  container: ({ radius }: any) => ({
     display: 'block',
-    ...(isWidthLessThan767
+    ...(radius
       ? {
-          width: 40,
-          height: 40
+          width: radius * 2,
+          height: radius * 2
         }
       : {
           height: 80,
@@ -25,9 +25,8 @@ const useStyles = makeStyles((theme: any) => ({
   })
 }))
 
-const Circle: React.FC<ICircleProps> = ({ item, ...props }) => {
-  const isWidthLessThan767 = useMediaQuery('(max-width: 767px)')
-  const classes = useStyles({ isWidthLessThan767 })
+const Circle: React.FC<ICircleProps> = ({ item, radius, ...props }) => {
+  const classes = useStyles({ radius })
   console.debug(item)
 
   return <Box className={classes.container} {...props} />
@@ -35,7 +34,8 @@ const Circle: React.FC<ICircleProps> = ({ item, ...props }) => {
 
 Circle.defaultProps = {
   item: {},
-  style: {}
+  style: {},
+  radius: 80
 }
 
 export default Circle
