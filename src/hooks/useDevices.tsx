@@ -28,15 +28,23 @@ const useDevices = () => {
         apiHelper.devicies.getAll().then(onSuccess).catch(onError)
       }
 
-      if (firstCall) callApi()
-      else {
-        timeout.current = setTimeout(() => {
-          callApi()
-        }, settings.POLLING_INTERVAL)
-      }
+      timeout.current = setTimeout(() => {
+        callApi()
+      }, settings.POLLING_INTERVAL)
     }
 
-    recursion()
+    const onSuccess = (response: AxiosResponse) => {
+      setDevices(get(response, 'data.devices', {}))
+      setFirstCall(false)
+      recursion()
+    }
+
+    const onError = (error: AxiosError) => {
+      console.debug(error)
+      recursion()
+    }
+
+    apiHelper.devicies.getAll().then(onSuccess).catch(onError)
 
     return () => {
       if (timeout.current) clearTimeout(timeout.current)
