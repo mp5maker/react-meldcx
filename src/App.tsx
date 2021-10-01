@@ -16,6 +16,7 @@ import Body from './components/body'
 import Button from './components/button'
 import PrivateRoute from './components/privateRoute'
 import routes from './constants/routes'
+import useAuthentication from './hooks/useAuthentication'
 import useLocalTheme from './hooks/useLocalTheme'
 import Devices from './pages/devices'
 import Login from './pages/login'
@@ -37,6 +38,7 @@ const App = () => {
   const { state, setTheme }: any = useLocalTheme()
   const currentTheme = get(state, 'theme', '')
   const [showlanguage, setShowLanguage] = React.useState<any>(null)
+  const { isLoggedIn } = useAuthentication()
 
   const openLanguage = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (showlanguage) {
@@ -52,6 +54,8 @@ const App = () => {
   const handleTheme = (value: string) => {
     setTheme(value)
   }
+
+  console.log(isLoggedIn)
 
   const TopContent = (
     <Box className={classes.topContent}>
@@ -72,22 +76,28 @@ const App = () => {
         <MenuItem onClick={() => closeLanguage('en')}>{t('ENGLISH')}</MenuItem>
         <MenuItem onClick={() => closeLanguage('zh')}>{t('MANDARIN')}</MenuItem>
       </Menu>
-      <Button
-        className={classes.button}
-        variant={currentTheme === 'light' ? 'contained' : 'outlined'}
-        style={{ margin: theme.spacing(1) }}
-        onClick={() => handleTheme('light')}
-      >
-        <LightMode />
-      </Button>
-      <Button
-        className={classes.button}
-        variant={currentTheme === 'dark' ? 'contained' : 'outlined'}
-        style={{ margin: theme.spacing(1) }}
-        onClick={() => handleTheme('dark')}
-      >
-        <DarkMode />
-      </Button>
+      {isLoggedIn ? (
+        <></>
+      ) : (
+        <>
+          <Button
+            className={classes.button}
+            variant={currentTheme === 'light' ? 'contained' : 'outlined'}
+            style={{ margin: theme.spacing(1) }}
+            onClick={() => handleTheme('light')}
+          >
+            <LightMode />
+          </Button>
+          <Button
+            className={classes.button}
+            variant={currentTheme === 'dark' ? 'contained' : 'outlined'}
+            style={{ margin: theme.spacing(1) }}
+            onClick={() => handleTheme('dark')}
+          >
+            <DarkMode />
+          </Button>
+        </>
+      )}
     </Box>
   )
 

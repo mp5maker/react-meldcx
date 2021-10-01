@@ -26,7 +26,7 @@ const useAuthentication = () => {
 
   const logOut = React.useCallback(() => {
     dispatch({
-      type: AUTHENTICATION_ACTION_TYPE.LOG_IN,
+      type: AUTHENTICATION_ACTION_TYPE.LOG_OUT,
       value: {
         isLoggedIn: false,
         userInfo: {}
