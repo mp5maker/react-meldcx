@@ -53,7 +53,7 @@ const Alert: React.FC<IAlertProps> = () => {
         variant="filled"
         className={`${commonClasses.center}`}
       >
-        {text}
+        <>{text}</>
       </MaterialAlert>
     </Box>
   )

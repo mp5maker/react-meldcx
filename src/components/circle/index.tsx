@@ -29,7 +29,7 @@ const Circle: React.FC<ICircleProps> = ({ item, radius, ...props }) => {
   const classes = useStyles({ radius })
   console.debug(item)
 
-  return <Box className={classes.container} {...props} />
+  return <Box data-testid="circle" className={classes.container} {...props} />
 }
 
 Circle.defaultProps = {
