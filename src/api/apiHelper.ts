@@ -1,19 +1,15 @@
 import axios from './axios'
 
 interface IUserPostBodyProps {
-  body: {
-    email: string
-    password: string
-  }
+  email: string
+  password: string
 }
 
 interface INotifyPostBodyProps {
-  body: {
-    name: string
-    email: string
-    repoUrl: string
-    message: string
-  }
+  name: string
+  email: string
+  repoUrl: string
+  message: string
 }
 
 const apiHelper = {

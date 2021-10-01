@@ -4,7 +4,10 @@ import Typography from '@mui/material/Typography'
 import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
+import apiHelper from '../../api/apiHelper'
 import Button from '../../components/button'
+import settings from '../../constants/settings'
+import useAlert from '../../hooks/useAlert'
 import useAuthentication from '../../hooks/useAuthentication'
 import useCommonStyles from '../../hooks/useCommonStyles'
 import useDevices from '../../hooks/useDevices'
@@ -40,10 +43,28 @@ const Devices: React.FC<IDevicesProps> = () => {
   const { devices }: any = useDevices()
   const theme = useTheme()
   const { logOut } = useAuthentication()
+  const { setAlert } = useAlert()
 
   const handleLogout = () => logOut()
 
-  const handleNotify = () => {}
+  const handleNotify = () => {
+    apiHelper.notify
+      .post({
+        body: {
+          name: settings.USER_NAME,
+          email: settings.USER_EMAIL,
+          repoUrl: settings.REPO_URL,
+          message: 'yo'
+        }
+      })
+      .then(() => {
+        setAlert({
+          severity: 'success',
+          isVisible: true,
+          text: t('SUCCESSFULLY_NOTIFIED')
+        })
+      })
+  }
 
   return (
     <Box className={classes.container}>

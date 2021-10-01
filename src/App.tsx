@@ -43,6 +43,7 @@ const App = () => {
       setShowLanguage(null)
     } else setShowLanguage(event.currentTarget)
   }
+
   const closeLanguage = (language: string) => {
     if (['en', 'zh'].includes(language)) i18n.changeLanguage(language)
     setShowLanguage(null)
